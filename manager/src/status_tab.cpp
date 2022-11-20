@@ -120,7 +120,7 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
     infoLayout->setHeight(40);
 
     this->profileCell   = new StatusCell("模式", formatProfile(context.profile));
-    this->tidCell       = new StatusCell("程序ID, formatTid(context.applicationId));
+    this->tidCell       = new StatusCell("程序ID", formatTid(context.applicationId));
 
     infoLayout->addView(this->profileCell);
     infoLayout->addView(this->tidCell);
