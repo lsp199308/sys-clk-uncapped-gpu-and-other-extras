@@ -30,7 +30,7 @@ void BaseGui::preDraw(tsl::gfx::Renderer* renderer)
 {
    // int offset = 13;
    // renderer->drawBitmap(LOGO_X, LOGO_Y-offset, LOGO_WIDTH, LOGO_HEIGHT, logo_rgba_bin);
-    renderer->drawString("超频插件", false, LOGO_LABEL_X, LOGO_LABEL_Y-offset, LOGO_LABEL_FONT_SIZE, renderer->a(0xF3FF));
+    renderer->drawString("超频插件", false, LOGO_LABEL_X, LOGO_LABEL_Y, LOGO_LABEL_FONT_SIZE, renderer->a(0xF3FF));
     renderer->drawString("♥", false, VERSION_X, VERSION_Y, VERSION_FONT_SIZE, renderer->a(0xF3FF));
 }
 
