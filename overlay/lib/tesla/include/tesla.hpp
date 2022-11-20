@@ -115,13 +115,13 @@ namespace tsl {
         constexpr u8  ListItemHighlightLength       = 22;       ///< Maximum length of Listitem highlights
 
         namespace color {
-            constexpr Color ColorFrameBackground  = { 0x0, 0x0, 0x0, 0xD };   ///< Overlay frame background color
+            constexpr Color ColorFrameBackground  = { 0x0, 0x0, 0x0, 0xF };   ///< Overlay frame background color
             constexpr Color ColorTransparent      = { 0x0, 0x0, 0x0, 0x0 };   ///< Transparent color
             constexpr Color ColorHighlight        = { 0x0, 0xF, 0xD, 0xF };   ///< Greenish highlight color
-            constexpr Color ColorFrame            = { 0x7, 0x7, 0x7, 0xF };   ///< Outer boarder color
-            constexpr Color ColorHandle           = { 0x5, 0x5, 0x5, 0xF };   ///< Track bar handle color
-            constexpr Color ColorText             = { 0xF, 0xF, 0xF, 0xF };   ///< Standard text color
-            constexpr Color ColorDescription      = { 0xA, 0xA, 0xA, 0xF };   ///< Description text color
+            constexpr Color ColorFrame            = { 0x0, 0x0, 0x0, 0x0 };   ///< Outer boarder color
+            constexpr Color ColorHandle           = { 0xF, 0xF, 0xF, 0xF };   ///< Track bar handle color
+            constexpr Color ColorText             = { 0xF, 0x6, 0x0, 0xF };   ///< Standard text color
+            constexpr Color ColorDescription      = { 0x9, 0x9, 0xA, 0xF };   ///< Description text color
             constexpr Color ColorHeaderBar        = { 0xC, 0xC, 0xC, 0xF };   ///< Category header rectangle color
             constexpr Color ColorClickAnimation   = { 0x0, 0x2, 0x2, 0xF };   ///< Element click animation color
         }
@@ -1588,7 +1588,7 @@ namespace tsl {
 
                 renderer->drawRect(15, tsl::cfg::FramebufferHeight - 73, tsl::cfg::FramebufferWidth - 30, 1, a(tsl::style::color::ColorText));
 
-                renderer->drawString("\uE0E1  Back     \uE0E0  OK", false, 30, 693, 23, a(tsl::style::color::ColorText));
+                renderer->drawString("\uE0E1  返回     \uE0E0  确定", false, 30, 693, 23, a(tsl::style::color::ColorText));
 
                 if (this->m_contentElement != nullptr)
                     this->m_contentElement->frame(renderer);
@@ -1682,7 +1682,7 @@ namespace tsl {
 
                 renderer->drawRect(15, tsl::cfg::FramebufferHeight - 73, tsl::cfg::FramebufferWidth - 30, 1, a(tsl::style::color::ColorText));
 
-                renderer->drawString("\uE0E1  Back     \uE0E0  OK", false, 30, 693, 23, a(tsl::style::color::ColorText));
+                renderer->drawString("\uE0E1  返回     \uE0E0  确定", false, 30, 693, 23, a(tsl::style::color::ColorText));
 
                 if (this->m_header != nullptr)
                     this->m_header->frame(renderer);
@@ -2300,7 +2300,7 @@ namespace tsl {
              * @param onValue Value drawn if the toggle is on
              * @param offValue Value drawn if the toggle is off
              */
-            ToggleListItem(const std::string& text, bool initialState, const std::string& onValue = "On", const std::string& offValue = "Off")
+            ToggleListItem(const std::string& text, bool initialState, const std::string& onValue = "开", const std::string& offValue = "关")
                 : ListItem(text), m_state(initialState), m_onValue(onValue), m_offValue(offValue) {
 
                 this->setState(this->m_state);
