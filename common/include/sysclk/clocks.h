@@ -59,7 +59,7 @@ typedef struct
 } SysClkTitleProfileList;
 
 #define SYSCLK_GPU_HANDHELD_MAX_HZ 460800000
-#define SYSCLK_GPU_UNOFFICIAL_CHARGER_MAX_HZ 768000000
+#define SYSCLK_GPU_UNOFFICIAL_CHARGER_MAX_HZ 921000000
 
 extern uint32_t sysclk_g_profile_table[];
 extern uint32_t sysclk_g_freq_table_mem_hz[];
@@ -77,7 +77,7 @@ static inline const char* sysclkFormatModule(SysClkModule module, bool pretty)
         case SysClkModule_GPU:
             return pretty ? "GPU" : "gpu";
         case SysClkModule_MEM:
-            return pretty ? "Memory" : "mem";
+            return pretty ? "内存" : "mem";
         default:
             return NULL;
     }
@@ -88,11 +88,11 @@ static inline const char* sysclkFormatThermalSensor(SysClkThermalSensor thermSen
     switch(thermSensor)
     {
         case SysClkThermalSensor_SOC:
-            return pretty ? "SOC" : "soc";
+            return pretty ? "核心" : "soc";
         case SysClkThermalSensor_PCB:
-            return pretty ? "PCB" : "pcb";
+            return pretty ? "主板" : "pcb";
         case SysClkThermalSensor_Skin:
-            return pretty ? "Skin" : "skin";
+            return pretty ? "外壳" : "skin";
         default:
             return NULL;
     }
@@ -103,15 +103,15 @@ static inline const char* sysclkFormatProfile(SysClkProfile profile, bool pretty
     switch(profile)
     {
         case SysClkProfile_Docked:
-            return pretty ? "Docked" : "docked";
+            return pretty ? "底座" : "docked";
         case SysClkProfile_Handheld:
-            return pretty ? "Handheld" : "handheld";
+            return pretty ? "掌机" : "handheld";
         case SysClkProfile_HandheldCharging:
-            return pretty ? "Charging" : "handheld_charging";
+            return pretty ? "充电" : "handheld_charging";
         case SysClkProfile_HandheldChargingUSB:
-            return pretty ? "USB Charger" : "handheld_charging_usb";
+            return pretty ? "USB充电" : "handheld_charging_usb";
         case SysClkProfile_HandheldChargingOfficial:
-            return pretty ? "Official Charger" : "handheld_charging_official";
+            return pretty ? "官方充电" : "handheld_charging_official";
         default:
             return NULL;
     }
