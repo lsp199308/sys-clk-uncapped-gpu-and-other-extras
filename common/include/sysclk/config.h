@@ -34,21 +34,21 @@ static inline const char* sysclkFormatConfigValue(SysClkConfigValue val, bool pr
     switch(val)
     {
         case SysClkConfigValue_PollingIntervalMs:
-            return pretty ? "Polling Interval (ms)" : "poll_interval_ms";
+            return pretty ? "轮询间隔 (ms)" : "poll_interval_ms";
         case SysClkConfigValue_TempLogIntervalMs:
-            return pretty ? "Temperature logging interval (ms)" : "temp_log_interval_ms";
+            return pretty ? "温度间隔 (ms)" : "temp_log_interval_ms";
         case SysClkConfigValue_CsvWriteIntervalMs:
-            return pretty ? "CSV write interval (ms)" : "csv_write_interval_ms";
+            return pretty ? "CSV 写入间隔 (ms)" : "csv_write_interval_ms";
         case SysClkConfigValue_UncappedGPUEnabled:
-            return pretty ? "Uncapped GPU (does not change profile)" : "uncapped_gpu_enabled";
+            return pretty ? "无上限的GPU (不更改配置文件)" : "uncapped_gpu_enabled";
         case SysClkConfigValue_FakeProfileModeEnabled:
-            return pretty ? "Minimum profile (spoof profile)" : "fake_profile_mode_enabled";
+            return pretty ? "最小配置文件（欺骗配置文件）" : "fake_profile_mode_enabled";
         case SysClkConfigValue_OverrideCPUBoostEnabled:
-            return pretty ? "Set CPU to 1785 MHz during boost" : "override_cpu_boost_enabled";
+            return pretty ? "升压期间将CPU设置为1785 MHz" : "override_cpu_boost_enabled";
         case SysClkConfigValue_OverrideGPUBoostEnabled:
-            return pretty ? "Set GPU to 76 MHz during boost" : "override_gpu_boost_enabled";
+            return pretty ? "升压期间将GPU设置为76 MHz" : "override_gpu_boost_enabled";
         case SysClkConfigValue_OverrideMEMEnabled:
-            return pretty ? "Override MEM to 1600 MHz" : "override_mem_enabled";
+            return pretty ? "将MEM设置至1600 MHz" : "override_mem_enabled";
         default:
             return NULL;
     }
