@@ -32,19 +32,19 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
     if (R_FAILED(rc))
     {
-        brls::Logger::error("Unable to get context");
+        brls::Logger::error("无法获取上下文");
         errorResult("sysclkIpcGetCurrentContext", rc);
-        brls::Application::crash("Could not get the current sys-clk context, please check that it is correctly installed and enabled.");
+        brls::Application::crash("无法获取当前的sys-clk上下文，请检查它是否已正确安装和启用.");
         return;
     }
 
     // Create UI
 
     // Disclaimer
-    this->addView(new brls::Label(brls::LabelStyle::REGULAR, "\uE140  Please only alter these settings if you know what you are doing.", true));
+    this->addView(new brls::Label(brls::LabelStyle::REGULAR, "\uE140  请仅在您知道自己在做什么的情况下更改这些设置.", true));
 
     // Temporary overrides
-    this->addView(new brls::Header("Temporary overrides"));
+    this->addView(new brls::Header("临时配置"));
 
     // CPU
     brls::SelectListItem *cpuFreqListItem = createFreqListItem(SysClkModule_CPU, context.overrideFreqs[SysClkModule_CPU] / 1000000);
@@ -55,7 +55,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
         if (R_FAILED(rc))
         {
-            brls::Logger::error("Unable to update CPU Override");
+            brls::Logger::error("无法更新CPU频率");
             errorResult(result == 0 ? "sysclkIpcRemoveOverride" : "sysclkIpcSetOverride",  rc);
             // TODO: Reset selected value
         }
@@ -70,7 +70,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
         if (R_FAILED(rc))
         {
-            brls::Logger::error("Unable to update GPU Override");
+            brls::Logger::error("无法更新GPU频率");
             errorResult(result == 0 ? "sysclkIpcRemoveOverride" : "sysclkIpcSetOverride",  rc);
             // TODO: Reset selected value
         }
@@ -86,7 +86,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
         if (R_FAILED(rc))
         {
-            brls::Logger::error("Unable to update MEM Override");
+            brls::Logger::error("无法更新内存频率");
             errorResult(result == 0 ? "sysclkIpcRemoveOverride" : "sysclkIpcSetOverride",  rc);
             // TODO: Reset selected value
         }
@@ -97,7 +97,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
     this->addView(memFreqListItem);
 
     // Config
-    this->addView(new brls::Header("Configuration"));
+    this->addView(new brls::Header("配置"));
 
     // Logging
     // TODO: add a logger view and put the button to enter it here
@@ -128,7 +128,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
                 // Validate the value
                 if (value < 0)
                 {
-                    brls::Application::notify("\uE5CD Couldn't save configuration: invalid value (is negative)");
+                    brls::Application::notify("\uE5CD 无法保存配置：无效值（为负值）");
                     configItem->setValue(std::to_string(this->configValues.values[config]));
                     return;
                 }
@@ -137,7 +137,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
                 if (!sysclkValidConfigValue(config, uvalue))
                 {
-                    brls::Application::notify("\uE5CD Couldn't save configuration: invalid value");
+                    brls::Application::notify("\uE5CD 无法保存配置：值无效");
                     configItem->setValue(std::to_string(this->configValues.values[config]));
                     return;
                 }
@@ -146,11 +146,11 @@ AdvancedSettingsTab::AdvancedSettingsTab()
                 this->configValues.values[config] = uvalue;
                 sysclkIpcSetConfigValues(&this->configValues);
 
-                brls::Application::notify("\uE14B Configuration saved");
+                brls::Application::notify("\uE14B 配置已保存");
             }
             catch(const std::exception& e)
             {
-                brls::Logger::error("Unable to parse config value %s: %s", configItem->getValue().c_str(), e.what());
+                brls::Logger::error("无法分析配置值 %s: %s", configItem->getValue().c_str(), e.what());
             }
         });
 
@@ -180,7 +180,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
                     
                     if (!sysclkValidConfigValue(config, uvalue))
                     {
-                        brls::Application::notify("\uE5CD Couldn't save configuration: invalid value");
+                        brls::Application::notify("\uE5CD 无法保存配置：值无效");
                         profileListItem->setValue(sysclkFormatProfile((SysClkProfile)this->configValues.values[config],true) );
                         return;
                     }
@@ -189,11 +189,11 @@ AdvancedSettingsTab::AdvancedSettingsTab()
                     this->configValues.values[config] = uvalue;
                     sysclkIpcSetConfigValues(&this->configValues);
 
-                    brls::Application::notify("\uE14B Configuration saved");
+                    brls::Application::notify("\uE14B 配置已保存");
                 }
                 catch(const std::exception& e)
                 {
-                    brls::Logger::error("Unable to parse config value %s: %s", profileListItem->getValue().c_str(), e.what());
+                    brls::Logger::error("无法分析配置值 %s: %s", profileListItem->getValue().c_str(), e.what());
                 }
                 
                 
@@ -209,7 +209,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
                 defValue = true;
             }
         
-            brls::ToggleListItem* configItem2 = new brls::ToggleListItem(label, defValue, "", "Yes", "No");
+            brls::ToggleListItem* configItem2 = new brls::ToggleListItem(label, defValue, "", "是", "否");
             
             configItem2->getClickEvent()->subscribe([this, configItem2, config](View* view)
             {
@@ -226,7 +226,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
                     if (!sysclkValidConfigValue(config, uvalue))
                     {
-                        brls::Application::notify("\uE5CD Couldn't save configuration: invalid value");
+                        brls::Application::notify("\uE5CD 无法保存配置：值无效");
                         configItem2->setValue(std::to_string(this->configValues.values[config]));
                         return;
                     }
@@ -235,11 +235,11 @@ AdvancedSettingsTab::AdvancedSettingsTab()
                     this->configValues.values[config] = uvalue;
                     sysclkIpcSetConfigValues(&this->configValues);
 
-                    brls::Application::notify("\uE14B Configuration saved");
+                    brls::Application::notify("\uE14B 配置已保存");
                 }
                 catch(const std::exception& e)
                 {
-                    brls::Logger::error("Unable to parse config value %s: %s", configItem2->getValue().c_str(), e.what());
+                    brls::Logger::error("无法分析配置值 %s: %s", configItem2->getValue().c_str(), e.what());
                 }
             });
 
@@ -252,7 +252,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
     // Notes
     brls::Label *notes = new brls::Label(
         brls::LabelStyle::DESCRIPTION,
-        "Chosen minimum profile will ensure that your device will stay at least at that minimum level. It's meant for people who have higher clocks in charging profiles and sometimes want to activate those profiles without a charger (e.g. choosing 'Official Charger' will ensure that your device's profile will remain at least at 'Official Charger' even if in reality your device is in handheld). Chosen minimum profile won't downgrade your real profile if the real profile is higher than the minimum profile (e.g. when docked choosing 'Charging' doesn't do anything (you are already at a higher profile)).",
+        "选择的最低配置文件将确保您的设备至少保持在最低级别。它适用于那些在充电模式中具有更高超频的人，并且有时希望在没有充电器的情况下激活这些模式（例如，选择“官方充电器”将确保您的设备的配置文件至少保持在“官方充电器“，即使您的设备实际上是掌机模式）。如果实际配置文件高于最低配置文件，则选择的最低配置文件不会降级您的实际配置文件（例如，当底座时，选择“充电”没有任何作用（您已经处于较高的配置文件）).",
         true
     );
     this->addView(notes);
@@ -264,11 +264,11 @@ std::string AdvancedSettingsTab::getDescriptionForConfig(SysClkConfigValue confi
     switch (config)
     {
         case SysClkConfigValue_CsvWriteIntervalMs:
-            return "How often to update /config/sys-clk/context.csv (in milliseconds)\n\uE016  Use 0 to disable";
+            return "更新/config/sys-clk/context.csv的频率 (毫秒)\n\uE016  使用0禁用";
         case SysClkConfigValue_TempLogIntervalMs:
-            return "How often to log temperatures (in milliseconds)\n\uE016  Use 0 to disable";
+            return "记录温度的频率（毫秒）\n\uE016  使用0禁用";
         case SysClkConfigValue_PollingIntervalMs:
-            return "How fast to check and apply profiles (in milliseconds)";
+            return "检查和应用配置文件的速度（毫秒）";
         default:
             return "";
     }
