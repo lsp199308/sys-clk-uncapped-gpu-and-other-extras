@@ -34,7 +34,7 @@
 AppProfilesTab::AppProfilesTab()
 {
     // Filter toggle
-    this->filterListItem = new brls::ToggleListItem("Show applications with no profile", this->showEmptyProfiles, "", "Yes", "No");
+    this->filterListItem = new brls::ToggleListItem("显示没有配置文件的应用程序", this->showEmptyProfiles, "", "是", "否");
     filterListItem->getClickEvent()->subscribe([this](View* v)
     {
         this->refreshFilter();
@@ -62,7 +62,7 @@ AppProfilesTab::AppProfilesTab()
     title->tid = tid;
 
     memset(title->name, 0, sizeof(title->name));
-    strncpy(title->name,"Global default profile", sizeof(title->name)-1);
+    strncpy(title->name,"全局默认配置文件", sizeof(title->name)-1);
 
     // Profile
     rc = sysclkIpcGetProfileCount(tid, &title->profileCount);
@@ -73,7 +73,7 @@ AppProfilesTab::AppProfilesTab()
     }
 
     // Add the ListItem
-    brls::ListItem *listItem = new brls::ListItem(formatListItemTitle(std::string(title->name)), "Global default profile for applications without an application specific profile. Can also be used as a permanent global override config if there are no application profiles at all.", formatTid(title->tid));
+    brls::ListItem *listItem = new brls::ListItem(formatListItemTitle(std::string(title->name)), "没有特定配置文件的应用程序的全局默认配置文件。如果根本没有应用程序配置文件，也可以用作永久全局覆盖配置.", formatTid(title->tid));
 
     title->listItem = listItem;
 
@@ -203,12 +203,12 @@ void AppProfilesTab::updateEmptyListLabel(bool animate)
 {
     if (this->items.empty())
     {
-        this->emptyListLabel->setText("\uE140  You don't have any application installed on your Nintendo Switch.");
+        this->emptyListLabel->setText("\uE140  您的任天堂Switch上没有安装任何应用程序.");
         this->emptyListLabel->show([](){}, animate);
     }
     else if (!this->showEmptyProfiles && this->profilesItems.empty())
     {
-        this->emptyListLabel->setText("\uE140  You don't have any application with a defined profile at the moment.");
+        this->emptyListLabel->setText("\uE140  您当前没有任何具有已定义配置文件的应用程序.");
         this->emptyListLabel->show([](){}, animate);
     }
     else
