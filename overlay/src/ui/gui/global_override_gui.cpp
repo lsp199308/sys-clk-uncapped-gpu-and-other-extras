@@ -128,7 +128,7 @@ void GlobalOverrideGui::addCustomToggleListItem(int configNumber,std::string sho
         defValue = true;
     }
 
-    this->enabledToggle = new tsl::elm::ToggleListItem(shortLabel, defValue,"Yes","No");
+    this->enabledToggle = new tsl::elm::ToggleListItem(shortLabel, defValue,"是","否");
 
     enabledToggle->setStateChangedListener([this,config](bool state) {
             
@@ -164,11 +164,11 @@ void GlobalOverrideGui::listUI()
     this->addModuleListItem(SysClkModule_GPU, &sysclk_g_freq_table_gpu_hz[0]);
     this->addModuleListItem(SysClkModule_MEM, &sysclk_g_freq_table_mem_hz[0]);
     //added 5 custom configs
-    this->addCustomToggleListItem(3,"Uncapped GPU");
-    this->addCustomListItem(4,"Min. profile",&sysclk_g_profile_table[0]);
-    this->addCustomToggleListItem(5,"CPU to 1785 in boost");
-    this->addCustomToggleListItem(6,"GPU to 76 in boost");
-    this->addCustomToggleListItem(7,"Override MEM to 1600");
+    this->addCustomToggleListItem(3,"无上限的GPU");
+    this->addCustomListItem(4,"最小模式",&sysclk_g_profile_table[0]);
+    this->addCustomToggleListItem(5,"CPU提升至1785Mhz（加载游戏）");
+    this->addCustomToggleListItem(6,"GPU降低至76Mhz（加载游戏）");
+    this->addCustomToggleListItem(7,"超频内存至1600Mhz");
 }
 
 void GlobalOverrideGui::refresh()
