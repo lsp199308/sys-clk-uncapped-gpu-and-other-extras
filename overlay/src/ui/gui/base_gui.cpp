@@ -11,27 +11,27 @@
 #include "base_gui.h"
 
 #include "../elements/base_frame.h"
-#include "logo_rgba_bin.h"
+//#include "logo_rgba_bin.h"
 
-#define LOGO_WIDTH 110
-#define LOGO_HEIGHT 39
-#define LOGO_X 18
-#define LOGO_Y 21
+//#define LOGO_WIDTH 110
+//#define LOGO_HEIGHT 39
+//#define LOGO_X 18
+//#define LOGO_Y 21
 
-#define LOGO_LABEL_X (LOGO_X + LOGO_WIDTH + 6)
-#define LOGO_LABEL_Y 50
-#define LOGO_LABEL_FONT_SIZE 28
+#define LOGO_LABEL_X 40
+#define LOGO_LABEL_Y 35
+#define LOGO_LABEL_FONT_SIZE 20
 
-#define VERSION_X (LOGO_LABEL_X + 110)
+#define VERSION_X 266
 #define VERSION_Y LOGO_LABEL_Y
-#define VERSION_FONT_SIZE 15
+#define VERSION_FONT_SIZE SMALL_TEXT_SIZE
 
 void BaseGui::preDraw(tsl::gfx::Renderer* renderer)
 {
-    int offset = 13;
-    renderer->drawBitmap(LOGO_X, LOGO_Y-offset, LOGO_WIDTH, LOGO_HEIGHT, logo_rgba_bin);
-    renderer->drawString("overlay", false, LOGO_LABEL_X, LOGO_LABEL_Y-offset, LOGO_LABEL_FONT_SIZE, TEXT_COLOR);
-    renderer->drawString(TARGET_VERSION, false, VERSION_X, VERSION_Y-offset, VERSION_FONT_SIZE, DESC_COLOR);
+   // int offset = 13;
+   // renderer->drawBitmap(LOGO_X, LOGO_Y-offset, LOGO_WIDTH, LOGO_HEIGHT, logo_rgba_bin);
+    renderer->drawString("超频插件", false, LOGO_LABEL_X, LOGO_LABEL_Y-offset, LOGO_LABEL_FONT_SIZE, renderer->a(0xF3FF));
+    renderer->drawString("♥", false, VERSION_X, VERSION_Y-offset, VERSION_FONT_SIZE, renderer->a(0xF3FF));
 }
 
 tsl::elm::Element* BaseGui::createUI()
