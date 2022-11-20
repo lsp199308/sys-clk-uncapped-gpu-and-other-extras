@@ -26,14 +26,14 @@ DATA		:=	data
 INCLUDES	:=	../common/include
 EXEFS_SRC	:=	exefs_src
 
-APP_TITLE	:=	sys-clk
+APP_TITLE	:=	超频插件
 NO_ICON		:=	1
 
 #---------------------------------------------------------------------------------
 # version control constants
 #---------------------------------------------------------------------------------
 TARGET_VERSION	:= $(shell git describe --tags)
-APP_VERSION		:= $(TARGET_VERSION)
+APP_VERSION		:= ♡
 
 #---------------------------------------------------------------------------------
 # options for code generation
