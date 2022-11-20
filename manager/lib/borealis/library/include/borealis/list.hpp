@@ -146,7 +146,7 @@ class ToggleListItem : public ListItem
     void updateValue();
 
   public:
-    ToggleListItem(std::string label, bool initialValue, std::string description = "", std::string onValue = "On", std::string offValue = "Off");
+    ToggleListItem(std::string label, bool initialValue, std::string description = "", std::string onValue = "开", std::string offValue = "关");
 
     virtual bool onClick() override;
 
