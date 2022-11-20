@@ -34,10 +34,10 @@ class AppOverlay : public tsl::Overlay
             if(!sysclkIpcRunning())
             {
                 return initially<FatalGui>(
-                    "sys-clk is not running.\n\n"
+                    "sys-clk未运行.\n\n"
                     "\n"
-                    "Please make sure it is correctly\n\n"
-                    "installed and enabled.",
+                    "请确保它是正确的\n\n"
+                    "已安装并启用.",
                     ""
                 );
             }
@@ -45,10 +45,10 @@ class AppOverlay : public tsl::Overlay
             if(R_FAILED(sysclkIpcInitialize()) || R_FAILED(sysclkIpcGetAPIVersion(&apiVersion)))
             {
                 return initially<FatalGui>(
-                    "Could not connect to sys-clk.\n\n"
+                    "无法连接到sys-clk.\n\n"
                     "\n"
-                    "Please make sure it is correctly\n\n"
-                    "installed and enabled.",
+                    "请确保它是正确的\n\n"
+                    "已安装并启用.",
                     ""
                 );
             }
@@ -56,11 +56,11 @@ class AppOverlay : public tsl::Overlay
             if(SYSCLK_IPC_API_VERSION != apiVersion)
             {
                 return initially<FatalGui>(
-                    "Overlay not compatible with\n\n"
-                    "the running sys-clk version.\n\n"
+                    "特斯拉与此不兼容\n\n"
+                    "正在运行的sys-clk版本.\n\n"
                     "\n"
-                    "Please make sure everything is\n\n"
-                    "installed and up to date.",
+                    "请确保一切正常\n\n"
+                    "已安装且为最新版本.",
                     ""
                 );
             }
