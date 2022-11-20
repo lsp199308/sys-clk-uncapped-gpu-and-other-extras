@@ -21,7 +21,7 @@
 #include "logo.h"
 
 Logo::Logo(LogoStyle style) {
-    this->logoLabel = new brls::Label(brls::LabelStyle::LIST_ITEM, "sys-clk", style == LogoStyle::ABOUT);
+    this->logoLabel = new brls::Label(brls::LabelStyle::LIST_ITEM, "超频", style == LogoStyle::ABOUT);
     this->logoLabel->setParent(this);
 
     int logoFont = brls::Application::findFont(LOGO_FONT_NAME);
@@ -39,7 +39,7 @@ Logo::Logo(LogoStyle style) {
     if (style == LogoStyle::HEADER)
     {
         this->logoLabel->setFontSize(LOGO_HEADER_FONT_SIZE);
-        this->descLabel = new brls::Label(brls::LabelStyle::LIST_ITEM, "manager");
+        this->descLabel = new brls::Label(brls::LabelStyle::LIST_ITEM, "插件");
         this->descLabel->setParent(this);
         this->descLabel->setFontSize(LOGO_DESC_FONT_SIZE);
     }
